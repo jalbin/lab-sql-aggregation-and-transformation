@@ -20,8 +20,12 @@ select floor(avg(length)/60) as hours, round(avg(length)%60) as minutes from fil
     /* - 2.1 Calculate the number of days that the company has been operating.
     -------------------------------------------------------------------------*/
 
+select datediff((select rental_date from rental order by rental_date desc limit 1),(select rental_date from rental order by rental_date asc limit 1));
+
     /* - 2.2 Retrieve rental information and add two additional columns to show the month and weekday of the rental. Return 20 rows of results
     ------------------------------------------------------------------------------------------------------------------------------------------*/
+
+select * , month(rental_date),dayname(rental_date) from rental limit 20;
 
     /* - 2.3 Bonus: Retrieve rental information and add an additional column called DAY_TYPE with values 'weekend' or 'workday', depending on the day of the week.
     --------------------------------------------------------------------------------------------------------------------------------------------------------------*/
